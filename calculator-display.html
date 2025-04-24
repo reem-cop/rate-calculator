@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 10px;
+    }
+    label, input {
+      display: block;
+      margin: 8px 0;
+    }
+    .result {
+      margin-top: 15px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h2>Training Cost Calculator</h2>
+  
+  <label>Hourly Labor Cost ($):</label>
+  <input type="number" id="hourlyCost" placeholder="e.g. 25">
+
+  <label>Hours of Training:</label>
+  <input type="number" id="hoursTraining" placeholder="e.g. 10">
+
+  <label>Materials Cost ($):</label>
+  <input type="number" id="materialsCost" placeholder="e.g. 100">
+
+  <label>Travel Cost ($):</label>
+  <input type="number" id="travelCost" placeholder="e.g. 50">
+
+  <label>Admin Cost ($):</label>
+  <input type="number" id="adminCost" placeholder="e.g. 30">
+
+  <button onclick="calculateCosts()">Calculate</button>
+
+  <div class="result" id="laborResult"></div>
+  <div class="result" id="trainingResult"></div>
+
+  <script>
+    function calculateCosts() {
+      const hourly = parseFloat(document.getElementById('hourlyCost').value) || 0;
+      const hours = parseFloat(document.getElementById('hoursTraining').value) || 0;
+      const materials = parseFloat(document.getElementById('materialsCost').value) || 0;
+      const travel = parseFloat(document.getElementById('travelCost').value) || 0;
+      const admin = parseFloat(document.getElementById('adminCost').value) || 0;
+
+      const totalLabor = hourly * hours;
+      const totalTraining = totalLabor + materials + travel + admin;
+
+      document.getElementById('laborResult').innerText = `Total Labor Cost: $${totalLabor.toFixed(2)}`;
+      document.getElementById('trainingResult').innerText = `Total Training Cost: $${totalTraining.toFixed(2)}`;
+    }
+  </script>
+</body>
+</html>
